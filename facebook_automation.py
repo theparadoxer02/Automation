@@ -2,14 +2,16 @@ from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 
 
-user_name = input('Enter the User Name:  ')
-pass_word = input('Enter the password:   ')
-
-
 browser = webdriver.Firefox()
 browser.get('http://www.facebook.com')
-email = browser.find_element_by_name('email')
-password = browser.find_element_by_name('pass')
+email = browser.find_element_by_name('ENTER EMAIL') #ENTER EMAIL
+
+#Don't be an idiot and save password in a text file 
+
+with open('test.txt', 'r') as myfile:   #Reads password from a text file 
+    Password=myfile.read().replace('\n', '')
+
+password = browser.find_element_by_name(Password)
 
 email.send_keys(user_name)
 password.send_keys(pass_word)
