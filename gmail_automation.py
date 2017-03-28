@@ -2,15 +2,13 @@ from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 
 
-user_name = input('Enter the User Name:  ')
-pass_word = input('Enter the password:   ')
 
 browser = webdriver.Firefox()
 browser.get('http://www.gmail.com')
 
 
 email = browser.find_element_by_name('Email')           #email_element selection
-email.send_keys(user_name)                              
+email.send_keys("ENTER EMAIL") 							#Enter Email                               
 
 browser.implicitly_wait(3)                              #wait_for 3 seconds
 
@@ -19,7 +17,13 @@ next_step.click()
 
 
 password = browser.find_element_by_name('Passwd')       #passsword element selection
-password.send_keys(pass_word)
+
+
+with open('test.txt', 'r') as myfile:   #Reads password from a text file 
+    Password=myfile.read().replace('\n', '')
+
+password.send_keys(Password)
+
 
 sign_in =  browser.find_element_by_css_selector('#signIn')  #sign_in selection
 sign_in.click()
